@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "66c41bbaa6f041d4002e9722"
+  },
+  "name": "Alice Smith",
+  "email": "alice@gmail.com",
+  "password": "smith3105",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c41dc7a6f041d4002e9729"
+  },
+  "name": "Juan Rivera",
+  "email": "juanriv@gmail.com",
+  "password": "riv2107",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c41de9a6f041d4002e972b"
+  },
+  "name": "Blanca Lopez",
+  "email": "lopezblanca@gmail.com",
+  "password": "lopblan",
+  "__v": 0
+}]
