@@ -42,31 +42,123 @@ Para iniciar el servidor, se usa el siguiente comando:
 El servidor estará escuchando en http://localhost:3000.
 
 ## Endpoints de la API
-1. **Clona el Repositorio:**
-- **Método: POST**
-- **Ruta: /api/restaurants**
-- **Descripción: Crea un nuevo restaurante.**
 
-    ```bash
-      Cuerpo de Solicitud:
-      {
-        "address": {
-          "building": "469",
-          "coord": [-73.961704, 40.662942],
-          "street": "Flatbush Avenue",
-          "zipcode": "11225"
-        },
-        "borough": "Brooklyn",
-        "cuisine": "Hamburgers",
-        "hours": {
-          "Monday": "18:00",
-          "Tuesday": "18:00",
-          "Wednesday": "15:00",
-          "Thursday": "11:00",
-          "Friday": "12:00",
-          "Saturday": "16:00",
-          "Sunday": "14:00"
-        },
-        "name": "Wendy'S",
-        "restaurant_id": "30112340"
-      }
+### 1. Crear un Restaurante
+
+- **Método**: `POST`
+- **Ruta**: `/api/restaurants`
+- **Descripción**: Crea un nuevo restaurante.
+- **Cuerpo de Solicitud**:
+
+  ```json
+  {
+    "address": {
+      "building": "364",
+      "coord": [-73.96084119999999, 40.8014307],
+      "street": "West  110 Street", "zipcode": "10025"
+    },
+    "borough": "Manhattan",
+    "cuisine": "American",
+    "hours": {
+      "Monday": "18:00",
+      "Tuesday": "18:00",
+      "Wednesday": "15:00",
+      "Thursday": "11:00",
+      "Friday": "12:00",
+      "Saturday": "16:00",
+      "Sunday": "14:00"
+    },
+    "name": "Spoon Bread Catering",
+    "restaurant_id": "40364179"
+  }
+
+  ### 2. Obtener Todos los Restaurantes
+
+- **Método**: `GET`
+- **Ruta**: `/api/restaurants`
+- **Descripción**: Obtiene una lista de todos los restaurantes.
+
+### 3. Obtener un Restaurante por ID
+
+- **Método**: `GET`
+- **Ruta**: `/api/restaurants/:id`
+- **Descripción**: Obtiene un restaurante específico por ID.
+- **Parámetros de Ruta**:
+  - `id` (string): ID del restaurante.
+
+### 4. Actualizar un Restaurante
+
+- **Método**: `PUT`
+- **Ruta**: `/api/restaurants/:id`
+- **Descripción**: Actualiza un restaurante específico por ID.
+- **Parámetros de Ruta**:
+  - `id` (string): ID del restaurante.
+- **Cuerpo de Solicitud**: Campos que deseas actualizar. Ejemplo:
+
+  ```json
+  {
+    "name": "New Name",
+    "hours": {
+      "Monday": "09:00",
+      "Tuesday": "09:00",
+      "Wednesday": "09:00",
+      "Thursday": "09:00",
+      "Friday": "09:00",
+      "Saturday": "09:00",
+      "Sunday": "09:00"
+    }
+  }
+### 5. Eliminar un Restaurante
+
+- **Método**: `DELETE`
+- **Ruta**: `/api/restaurants/:id`
+- **Descripción**: Elimina un restaurante específico por ID.
+- **Parámetros de Ruta**:
+  - `id` (string): ID del restaurante que deseas eliminar.
+
+    ```json
+    {
+      "message": "Restaurant deleted successfully"
+    }
+    ```
+### 6. Crear un nuevo usuario
+
+- **Método**: `POST`
+- **Ruta**: `/api/users`
+- **Descripción**: Añade un nuevo usuario por ID.
+- **Parámetros de Ruta**:
+  - `id` (string): ID del restaurante al que se le añadirá el comentario.
+- **Cuerpo de Solicitud**:
+
+  ```json
+  {
+    "name": "",
+    "email": "",
+    "password": ""
+  }
+
+### 6. Añadir un Comentario
+
+- **Método**: `POST`
+- **Ruta**: `/api/restaurants/:id/comments`
+- **Descripción**: Añade un comentario a un restaurante específico por ID.
+- **Parámetros de Ruta**:
+  - `id` (string): ID del restaurante al que se le añadirá el comentario.
+- **Cuerpo de Solicitud**:
+
+  ```json
+  {
+    "userId": "",  // Reemplazar con el ID del usuario 
+    "comment": "¡La comida fue increíble!"
+  }
+
+### 7. Calificar un Restaurante
+
+- **Endpoint:** `POST /api/restaurants/:id/rating`
+- **Descripción:** Califica un restaurante específico.
+- **Parámetros de Ruta:** `id` - ID del restaurante.
+- **Cuerpo de la Solicitud:**
+  ```json
+  {
+    "rating": 5
+  }
