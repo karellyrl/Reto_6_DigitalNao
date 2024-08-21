@@ -37,17 +37,18 @@ Para poder ejecutar este proyecto primero se siguen estos pasos para instalar la
 ## Ejecutar la API
 Para iniciar el servidor, se usa el siguiente comando:
 
-   ```bash
+      ```bash
    node server.js
 
 El servidor estará escuchando en http://localhost:3000.
 
 ## Endpoints de la API
 1. **Clona el Repositorio:**
-Método: POST
-Ruta: /api/restaurants
-Descripción: Crea un nuevo restaurante.
+- **Método: POST**
+- **Ruta: /api/restaurants**
+- **Descripción: Crea un nuevo restaurante.**
 
+      ```bash
 Cuerpo de Solicitud:
 {
   "address": {
