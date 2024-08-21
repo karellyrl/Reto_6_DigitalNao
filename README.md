@@ -36,9 +36,8 @@ Para poder ejecutar este proyecto primero se siguen estos pasos para instalar la
 
 ## Ejecutar la API
 Para iniciar el servidor, se usa el siguiente comando:
-
-   ```bash
-   node server.js
+    ```bash
+    npm install
 
 El servidor estará escuchando en http://localhost:3000.
 
@@ -48,26 +47,26 @@ El servidor estará escuchando en http://localhost:3000.
 - **Ruta: /api/restaurants**
 - **Descripción: Crea un nuevo restaurante.**
 
-   ```bash
-   Cuerpo de Solicitud:
-   {
-     "address": {
-       "building": "469",
-       "coord": [-73.961704, 40.662942],
-       "street": "Flatbush Avenue",
-       "zipcode": "11225"
-     },
-     "borough": "Brooklyn",
-     "cuisine": "Hamburgers",
-     "hours": {
-       "Monday": "18:00",
-       "Tuesday": "18:00",
-       "Wednesday": "15:00",
-       "Thursday": "11:00",
-       "Friday": "12:00",
-       "Saturday": "16:00",
-       "Sunday": "14:00"
-     },
-     "name": "Wendy'S",
-     "restaurant_id": "30112340"
-   }
+    ```bash
+      Cuerpo de Solicitud:
+      {
+        "address": {
+          "building": "469",
+          "coord": [-73.961704, 40.662942],
+          "street": "Flatbush Avenue",
+          "zipcode": "11225"
+        },
+        "borough": "Brooklyn",
+        "cuisine": "Hamburgers",
+        "hours": {
+          "Monday": "18:00",
+          "Tuesday": "18:00",
+          "Wednesday": "15:00",
+          "Thursday": "11:00",
+          "Friday": "12:00",
+          "Saturday": "16:00",
+          "Sunday": "14:00"
+        },
+        "name": "Wendy'S",
+        "restaurant_id": "30112340"
+      }
