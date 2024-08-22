@@ -36,8 +36,9 @@ Para poder ejecutar este proyecto primero se siguen estos pasos para instalar la
 
 ## Ejecutar la API
 Para iniciar el servidor, se usa el siguiente comando:
+
     ```bash
-    npm install
+    node server.js
 
 El servidor estará escuchando en http://localhost:3000.
 
