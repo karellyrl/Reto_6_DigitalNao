@@ -73,7 +73,7 @@ El servidor estará escuchando en http://localhost:3000.
     "restaurant_id": "40364179"
   }
 
-  ### 2. Obtener Todos los Restaurantes
+### 2. Obtener Todos los Restaurantes
 
 - **Método**: `GET`
 - **Ruta**: `/api/restaurants`
@@ -149,7 +149,7 @@ El servidor estará escuchando en http://localhost:3000.
 
   ```json
   {
-    "userId": "",  // Reemplazar con el ID del usuario 
+    "userId": "",  
     "comment": "¡La comida fue increíble!"
   }
 
