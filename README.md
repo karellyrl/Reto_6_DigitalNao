@@ -10,10 +10,13 @@ Este proyecto tiene como objetivo proporcionar una API RESTful para interactuar 
 ## Estructura del Proyecto
 
 - **`backup_data/`**: Carpeta para almacenar respaldos de la base de datos.
+- - **`config/`**: Configuración para conectar a la base de datos.
 - **`controllers/`**: Contiene la lógica de negocio y maneja las solicitudes para cada ruta.
+- **`middleware/`**: Middleware para manejo de autenticación.
 - **`models/`**: Define la estructura de los datos en MongoDB.
 - **`routes/`**: Define las rutas y vincula cada ruta con su controlador correspondiente.
 - **`server.js`**: Configura el servidor Express y conecta a MongoDB.
+- **`scripts.js`**: Script para la creación de la base de datos.
 - **`node_modules/`**: Contiene las dependencias del proyecto.
 - **`package.json`**: Archivo de configuración del proyecto que lista las dependencias y scripts.
 - **`package-lock.json`**: Archivo de bloqueo de versiones de las dependencias.
@@ -69,7 +72,7 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
 
 ---
 
-## Restaurantes
+## Endpoints de Restaurantes
 
 ### **Obtener todos los Restaurantes**
 - **Endpoint**: `GET /api/restaurants`
@@ -214,9 +217,51 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
     }
     ```
 
+### **Buscar Restaurantes por Criterio**
+- **Endpoint**: `GET /api/restaurants/search`
+- **Parámetros de Consulta**:
+    - `name`: (opcional) Nombre del restaurante para buscar.
+    - `cuisine`: (opcional) Tipo de cocina para filtrar.
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Ejemplo en Postman**:
+    - Método: `GET`
+    - URL: `http://localhost:3000/api/restaurants/search?name=Berkely`
+- **Respuesta Exitosa**:
+    ```json
+    [
+      {
+        "address": {
+            "building": "437",
+            "coord": [-73.975393, 40.757365],
+            "street": "Madison Avenue",
+            "zipcode": "10022"
+        },
+        "borough": "Manhattan",
+        "cuisine": "American",
+        "name": "Berkely",
+        "restaurant_id": "40363685",
+        "hours": {
+            "Monday": "11:00 AM - 23:00 PM",
+            "Tuesday": "9:00 AM - 21:00 PM",
+            "Wednesday": "7:00 AM - 19:00 PM",
+            "Thursday": "8:00 AM - 20:00 PM",
+            "Friday": "10:00 AM - 19:00 PM",
+            "Saturday": "11:00 AM - 23:00 PM",
+            "Sunday": "11:00 AM - 20:00 PM"
+        }
+      }
+    ]
+    ```
+- **Respuesta Sin Resultados**:
+    ```json
+    []
+    ```
+
 ---
 
-## Usuarios
+
+## Endpoints de Usuarios
 
 ### **Registrar un Nuevo Usuario**
 - **Endpoint**: `POST /api/users/register`
@@ -268,6 +313,40 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
       "email": "juan@example.com"
     }
     ```
+### **Obtener Todos los Usuarios**
+- **Endpoint**: `GET /api/users`
+- **Descripción**: Recupera una lista de todos los usuarios registrados en el sistema.
+- **Respuesta Exitosa**:
+    - **Código de Estado**: `200 OK`
+    - **Body**:
+    ```json
+    [
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000001",
+        "name": "Ana López",
+        "email": "ana@example.com"
+      },
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000002",
+        "name": "Carlos Martínez",
+        "email": "carlos@example.com"
+      },
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000003",
+        "name": "Juan Pérez",
+        "email": "juan@example.com"
+      }
+    ]
+    ```
+- **Respuesta de Error**:
+    ```
+    - **Código de Estado**: `500 Internal Server Error` (si ocurre un error en el servidor)
+    - **Body**:
+    ```json
+    {
+      "message": "Error en el servidor"
+    }
+    ```
 
 ### **Actualizar Perfil del Usuario**
 - **Endpoint**: `PUT /api/users/me`
@@ -305,16 +384,15 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
 
 ---
 
-## Comentarios
-
-### **Agregar un Comentario a un Restaurante**
+## Endoints de Comentarios
+### **1. Agregar un Comentario a un Restaurante**
 - **Endpoint**: `POST /api/comments`
 - **Body**:
     ```json
     {
       "restaurant": "64f7d3a3b5a4b9c1e0000002",
       "author": "64f7d3a3b5a4b9c1e0000003",
-      "comment": "¡Excelente comida!"
+      "comment": "¡Excelente comida!",
     }
     ```
 - **Encabezados**:
@@ -323,125 +401,205 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
     ```json
     {
       "_id": "64f7d3a3b5a4b9c1e0000004",
-      "
-
-
-### 1. Crear un Restaurante
-
-- **Método**: `POST`
-- **Ruta**: `/api/restaurants`
-- **Descripción**: Crea un nuevo restaurante.
-- **Cuerpo de Solicitud**:
-
-  ```json
-  {
-    "address": {
-      "building": "364",
-      "coord": [-73.96084119999999, 40.8014307],
-      "street": "West  110 Street", "zipcode": "10025"
-    },
-    "borough": "Manhattan",
-    "cuisine": "American",
-    "hours": {
-      "Monday": "18:00",
-      "Tuesday": "18:00",
-      "Wednesday": "15:00",
-      "Thursday": "11:00",
-      "Friday": "12:00",
-      "Saturday": "16:00",
-      "Sunday": "14:00"
-    },
-    "name": "Spoon Bread Catering",
-    "restaurant_id": "40364179"
-  }
-
-### 2. Obtener Todos los Restaurantes
-
-- **Método**: `GET`
-- **Ruta**: `/api/restaurants`
-- **Descripción**: Obtiene una lista de todos los restaurantes.
-
-### 3. Obtener un Restaurante por ID
-
-- **Método**: `GET`
-- **Ruta**: `/api/restaurants/:id`
-- **Descripción**: Obtiene un restaurante específico por ID.
-- **Parámetros de Ruta**:
-  - `id` (string): ID del restaurante.
-
-### 4. Actualizar un Restaurante
-
-- **Método**: `PUT`
-- **Ruta**: `/api/restaurants/:id`
-- **Descripción**: Actualiza un restaurante específico por ID.
-- **Parámetros de Ruta**:
-  - `id` (string): ID del restaurante.
-- **Cuerpo de Solicitud**: Campos que deseas actualizar. Ejemplo:
-
-  ```json
-  {
-    "name": "New Name",
-    "hours": {
-      "Monday": "09:00",
-      "Tuesday": "09:00",
-      "Wednesday": "09:00",
-      "Thursday": "09:00",
-      "Friday": "09:00",
-      "Saturday": "09:00",
-      "Sunday": "09:00"
-    }
-  }
-### 5. Eliminar un Restaurante
-
-- **Método**: `DELETE`
-- **Ruta**: `/api/restaurants/:id`
-- **Descripción**: Elimina un restaurante específico por ID.
-- **Parámetros de Ruta**:
-  - `id` (string): ID del restaurante que deseas eliminar.
-
-    ```json
-    {
-      "message": "Restaurant deleted successfully"
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "comment": "¡Excelente comida!",
+      "date": "2024-09-01T10:00:00Z"
     }
     ```
-### 6. Crear un nuevo usuario
 
-- **Método**: `POST`
-- **Ruta**: `/api/users`
-- **Descripción**: Añade un nuevo usuario por ID.
+### **2. Obtener Comentarios de un Restaurante**
+- **Endpoint**: `GET /api/comments?restaurant=64f7d3a3b5a4b9c1e0000002`
+- **Respuesta Exitosa**:
+    ```json
+    [
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000004",
+        "restaurant": "64f7d3a3b5a4b9c1e0000002",
+        "author": "64f7d3a3b5a4b9c1e0000003",
+        "comment": "¡Excelente comida!",
+        "date": "2024-09-01T10:00:00Z"
+      }
+    ]
+    ```
+
+### **3. Obtener un Comentario Específico**
+- **Endpoint**: `GET /api/comments/64f7d3a3b5a4b9c1e0000004`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000004",
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "comment": "¡Excelente comida!",
+      "date": "2024-09-01T10:00:00Z"
+    }
+    ```
+
+### **4. Actualizar un Comentario**
+- **Endpoint**: `PUT /api/comments/64f7d3a3b5a4b9c1e0000004`
+- **Body**:
+    ```json
+    {
+      "comment": "¡Comida excepcional y servicio excelente!",
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000004",
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "comment": "¡Comida excepcional y servicio excelente!",
+      "date": "2024-09-01T11:00:00Z"
+    }
+    ```
+
+### **5. Eliminar un Comentario**
+- **Endpoint**: `DELETE /api/comments/64f7d3a3b5a4b9c1e0000004`
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "message": "Comentario eliminado con éxito",
+      "deletedId": "64f7d3a3b5a4b9c1e0000004"
+    }
+    ```
+
+# Endpoints de Ratings
+
+## **Agregar una Calificación a un Restaurante**
+- **Endpoint**: `POST /api/ratings`
+- **Body**:
+    ```json
+    {
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "rating": 5
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000005",
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "rating": 5,
+      "comment": "Excelente servicio y comida.",
+      "date": "2024-09-01T00:00:00.000Z"
+    }
+    ```
+
+## **Obtener todas las Calificaciones para un Restaurante**
+- **Endpoint**: `GET /api/ratings/restaurant/:id`
 - **Parámetros de Ruta**:
-  - `id` (string): ID del restaurante al que se le añadirá el comentario.
-- **Cuerpo de Solicitud**:
+    - `id`: ID del restaurante (e.g., `64f7d3a3b5a4b9c1e0000002`)
+- **Respuesta Exitosa**:
+    ```json
+    [
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000005",
+        "restaurant": "64f7d3a3b5a4b9c1e0000002",
+        "author": "64f7d3a3b5a4b9c1e0000003",
+        "rating": 5,
+        "comment": "Excelente servicio y comida.",
+        "date": "2024-09-01T00:00:00.000Z"
+      },
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000006",
+        "restaurant": "64f7d3a3b5a4b9c1e0000002",
+        "author": "64f7d3a3b5a4b9c1e0000004",
+        "rating": 4,
+        "comment": "Muy bueno, pero el servicio puede mejorar.",
+        "date": "2024-09-02T00:00:00.000Z"
+      }
+    ]
+    ```
 
-  ```json
-  {
-    "name": "",
-    "email": "",
-    "password": ""
-  }
-
-### 6. Añadir un Comentario
-
-- **Método**: `POST`
-- **Ruta**: `/api/restaurants/:id/comments`
-- **Descripción**: Añade un comentario a un restaurante específico por ID.
+## **Obtener una Calificación Específica**
+- **Endpoint**: `GET /api/ratings/:id`
 - **Parámetros de Ruta**:
-  - `id` (string): ID del restaurante al que se le añadirá el comentario.
-- **Cuerpo de Solicitud**:
+    - `id`: ID de la calificación (e.g., `64f7d3a3b5a4b9c1e0000005`)
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000005",
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "rating": 5,
+      "comment": "Excelente servicio y comida.",
+      "date": "2024-09-01T00:00:00.000Z"
+    }
+    ```
 
-  ```json
-  {
-    "userId": "",  
-    "comment": "¡La comida fue increíble!"
-  }
+## **Actualizar una Calificación**
+- **Endpoint**: `PUT /api/ratings/:id`
+- **Parámetros de Ruta**:
+    - `id`: ID de la calificación (e.g., `64f7d3a3b5a4b9c1e0000005`)
+- **Body**:
+    ```json
+    {
+      "rating": 4
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000005",
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "rating": 4,
+      "comment": "Buena comida, pero el ambiente podría mejorar.",
+      "date": "2024-09-01T00:00:00.000Z"
+    }
+    ```
 
-### 7. Calificar un Restaurante
+## **Eliminar una Calificación**
+- **Endpoint**: `DELETE /api/ratings/:id`
+- **Parámetros de Ruta**:
+    - `id`: ID de la calificación (e.g., `64f7d3a3b5a4b9c1e0000005`)
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "message": "Calificación eliminada exitosamente."
+    }
+    ```
+# Documentación de la API de Restaurantes
 
-- **Endpoint:** `POST /api/restaurants/:id/rating`
-- **Descripción:** Califica un restaurante específico.
-- **Parámetros de Ruta:** `id` - ID del restaurante.
-- **Cuerpo de la Solicitud:**
-  ```json
-  {
-    "rating": 5
-  }
+Este proyecto incluye una API para la gestión de restaurantes, comentarios, calificaciones y usuarios. La documentación de la API está disponible en Notion y proporciona detalles completos sobre la estructura, los endpoints, y las configuraciones de la API.
+
+## **Documentación en Notion**
+
+He creado una documentación detallada en Notion que cubre los siguientes aspectos:
+
+1. **Estructura General de la API**:
+   - Resumen de los recursos disponibles y cómo se relacionan entre sí.
+   - Información sobre los modelos de datos utilizados en la API.
+
+2. **Detalles de los Endpoints**:
+   - Descripción de todos los endpoints disponibles, incluidos los parámetros de entrada y salida.
+   - Ejemplos de solicitudes y respuestas para cada endpoint.
+
+3. **Configuración y Uso**:
+   - Instrucciones sobre cómo configurar y ejecutar la API en un entorno de desarrollo.
+   - Información sobre cómo autenticar y autorizar solicitudes a la API.
+
+4. **Ejemplos de Uso**:
+   - Ejemplos prácticos de cómo realizar solicitudes a la API usando herramientas como Postman.
+
+5. **Errores**:
+   - Lista de posibles errores que pueden ocurrir dentro de la prueba de cada Endpoint.
+
+Para acceder a la documentación completa en Notion, se accede a el siguiente enlace:
+
+[Documentación de la API en Notion](https://www.notion.so/Reto-6-2eb8fc1de6884559ad58da9a268dccfc)
+
