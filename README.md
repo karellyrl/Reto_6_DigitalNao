@@ -41,7 +41,290 @@ Para iniciar el servidor, se usa el siguiente comando:
 
 El servidor estará escuchando en http://localhost:3000.
 
+
+
 ## Endpoints de la API
+A continuación se presentan ejemplos de cómo utilizar los endpoints de la API de Restaurantes utilizando Postman, incluyendo ejemplos de las respuestas.
+
+## Autenticación
+Antes de realizar solicitudes a ciertos endpoints, es necesario autenticarse y obtener un token JWT.
+
+### **Iniciar Sesión**
+- **Endpoint**: `POST /api/users/login`
+- **Body**:
+    ```json
+    {
+      "email": "usuario@example.com",
+      "password": "password123"
+    }
+    ```
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "token": "jwt-token-aqui"
+    }
+    ```
+
+Guarda el token proporcionado para usarlo en los encabezados de las siguientes solicitudes que lo requieran.
+
+---
+
+## Restaurantes
+
+### **Obtener todos los Restaurantes**
+- **Endpoint**: `GET /api/restaurants`
+- **Ejemplo en Postman**:
+    - Método: `GET`
+    - URL: `http://localhost:3000/api/restaurants`
+- **Respuesta Exitosa**:
+    ```json
+    [
+      {
+        "_id": "64f7d3a3b5a4b9c1e0000001",
+        "name": "Nuevo Restaurante",
+        "cuisine": "Mexicana",
+        "borough": "Centro",
+        "address": {
+          "building": "123",
+          "street": "Calle Principal",
+          "zipcode": "64000"
+        },
+        "coord": [-99.1332, 19.4326],
+        "hours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00"
+        },
+        "rating": 4.5
+      }
+    ]
+    ```
+
+### **Obtener un Restaurante por ID**
+- **Endpoint**: `GET /api/restaurants/:id`
+- **Ejemplo en Postman**:
+    - Método: `GET`
+    - URL: `http://localhost:3000/api/restaurants/64f7d3a3b5a4b9c1e0000001`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000001",
+      "name": "Nuevo Restaurante",
+      "cuisine": "Mexicana",
+      "borough": "Centro",
+      "address": {
+        "building": "123",
+        "street": "Calle Principal",
+        "zipcode": "64000"
+      },
+      "coord": [-99.1332, 19.4326],
+      "hours": {
+        "monday": "09:00-18:00",
+        "tuesday": "09:00-18:00"
+      },
+      "rating": 4.5
+    }
+    ```
+
+### **Agregar un Restaurante**
+- **Endpoint**: `POST /api/restaurants`
+- **Body**:
+    ```json
+    {
+      "name": "Nuevo Restaurante",
+      "cuisine": "Mexicana",
+      "borough": "Centro",
+      "address": {
+        "building": "123",
+        "street": "Calle Principal",
+        "zipcode": "64000"
+      },
+      "coord": [-99.1332, 19.4326],
+      "hours": {
+        "monday": "09:00-18:00",
+        "tuesday": "09:00-18:00"
+      }
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000002",
+      "name": "Nuevo Restaurante",
+      "cuisine": "Mexicana",
+      "borough": "Centro",
+      "address": {
+        "building": "123",
+        "street": "Calle Principal",
+        "zipcode": "64000"
+      },
+      "coord": [-99.1332, 19.4326],
+      "hours": {
+        "monday": "09:00-18:00",
+        "tuesday": "09:00-18:00"
+      },
+      "rating": 0
+    }
+    ```
+
+### **Actualizar un Restaurante**
+- **Endpoint**: `PUT /api/restaurants/:id`
+- **Body**:
+    ```json
+    {
+      "name": "Restaurante Actualizado",
+      "cuisine": "Italiana"
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000001",
+      "name": "Restaurante Actualizado",
+      "cuisine": "Italiana",
+      "borough": "Centro",
+      "address": {
+        "building": "123",
+        "street": "Calle Principal",
+        "zipcode": "64000"
+      },
+      "coord": [-99.1332, 19.4326],
+      "hours": {
+        "monday": "09:00-18:00",
+        "tuesday": "09:00-18:00"
+      },
+      "rating": 4.5
+    }
+    ```
+
+### **Eliminar un Restaurante**
+- **Endpoint**: `DELETE /api/restaurants/:id`
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Ejemplo en Postman**:
+    - Método: `DELETE`
+    - URL: `http://localhost:3000/api/restaurants/64f7d3a3b5a4b9c1e0000001`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "message": "Restaurante eliminado correctamente."
+    }
+    ```
+
+---
+
+## Usuarios
+
+### **Registrar un Nuevo Usuario**
+- **Endpoint**: `POST /api/users/register`
+- **Body**:
+    ```json
+    {
+      "name": "Juan Pérez",
+      "email": "juan@example.com",
+      "password": "password123"
+    }
+    ```
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000003",
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    }
+    ```
+
+### **Iniciar Sesión**
+- **Endpoint**: `POST /api/users/login`
+- **Body**:
+    ```json
+    {
+      "email": "juan@example.com",
+      "password": "password123"
+    }
+    ```
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "token": "jwt-token-aqui"
+    }
+    ```
+
+### **Obtener Perfil del Usuario**
+- **Endpoint**: `GET /api/users/me`
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Ejemplo en Postman**:
+    - Método: `GET`
+    - URL: `http://localhost:3000/api/users/me`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000003",
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    }
+    ```
+
+### **Actualizar Perfil del Usuario**
+- **Endpoint**: `PUT /api/users/me`
+- **Body**:
+    ```json
+    {
+      "name": "Juan Pérez Actualizado",
+      "password": "nuevo_password123"
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000003",
+      "name": "Juan Pérez Actualizado",
+      "email": "juan@example.com"
+    }
+    ```
+
+### **Eliminar Usuario**
+- **Endpoint**: `DELETE /api/users/me`
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Ejemplo en Postman**:
+    - Método: `DELETE`
+    - URL: `http://localhost:3000/api/users/me`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "message": "Usuario eliminado correctamente."
+    }
+    ```
+
+---
+
+## Comentarios
+
+### **Agregar un Comentario a un Restaurante**
+- **Endpoint**: `POST /api/comments`
+- **Body**:
+    ```json
+    {
+      "restaurant": "64f7d3a3b5a4b9c1e0000002",
+      "author": "64f7d3a3b5a4b9c1e0000003",
+      "comment": "¡Excelente comida!"
+    }
+    ```
+- **Encabezados**:
+    - `Authorization`: `Bearer jwt-token-aqui`
+- **Respuesta Exitosa**:
+    ```json
+    {
+      "_id": "64f7d3a3b5a4b9c1e0000004",
+      "
+
 
 ### 1. Crear un Restaurante
 
