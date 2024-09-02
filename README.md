@@ -10,7 +10,7 @@ Este proyecto tiene como objetivo proporcionar una API RESTful para interactuar 
 ## Estructura del Proyecto
 
 - **`backup_data/`**: Carpeta para almacenar respaldos de la base de datos.
-- - **`config/`**: Configuración para conectar a la base de datos.
+- **`config/`**: Configuración para conectar a la base de datos.
 - **`controllers/`**: Contiene la lógica de negocio y maneja las solicitudes para cada ruta.
 - **`middleware/`**: Middleware para manejo de autenticación.
 - **`models/`**: Define la estructura de los datos en MongoDB.
@@ -573,12 +573,7 @@ Guarda el token proporcionado para usarlo en los encabezados de las siguientes s
       "message": "Calificación eliminada exitosamente."
     }
     ```
-# Documentación de la API de Restaurantes
-
-Este proyecto incluye una API para la gestión de restaurantes, comentarios, calificaciones y usuarios. La documentación de la API está disponible en Notion y proporciona detalles completos sobre la estructura, los endpoints, y las configuraciones de la API.
-
-## **Documentación en Notion**
-
+# Documentación en Notion
 He creado una documentación detallada en Notion que cubre los siguientes aspectos:
 
 1. **Estructura General de la API**:
