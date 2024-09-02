@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "66d480bc12b09e83a559c30a"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a416"
+  },
+  "author": {
+    "$oid": "66d47fd412b09e83a559c2fe"
+  },
+  "comment": "Muy buena comida",
+  "date": {
+    "$date": "2024-09-01T14:57:00.451Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d480f612b09e83a559c30d"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a416"
+  },
+  "author": {
+    "$oid": "66d4802112b09e83a559c302"
+  },
+  "comment": "No tienen muchas mesas disponibles",
+  "date": {
+    "$date": "2024-09-01T14:57:58.718Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d53fcb5930022ecbe73527"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a40d"
+  },
+  "author": {
+    "$oid": "66d53ed45930022ecbe73520"
+  },
+  "comment": "Excelente comida y servicio.",
+  "date": {
+    "$date": "2024-09-02T04:32:11.417Z"
+  },
+  "__v": 0
+}]

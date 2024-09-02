@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "66d460d565879619e1ecf803"
+  },
+  "name": "Diego Rodriguez",
+  "email": "diego.rdz@example.com",
+  "password": "$2a$08$nflmY3cSmUYD0isD5XSTNujEbdmJ9YXg.nxAjPJ4uBI2LXBCfrOVu",
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66d479edacee91a808ce260b"
+  },
+  "name": "Jimena Delgado",
+  "email": "delg_jimena@gmail.com",
+  "password": "$2a$08$ThOIue.QTwq//xPud7f3QePWh0kAr4XDbupRLi8cGP7iFd5LctI0e",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d47fd412b09e83a559c2fe"
+  },
+  "name": "Juan Rivera López",
+  "email": "juanriv@gmail.com",
+  "password": "$2a$08$LwGfthppOGZwfilT7CoDt.Wo8TP3bG72Yil9NYZWTGPRKFYEZIsmq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d4802112b09e83a559c302"
+  },
+  "name": "Blanca Lopez",
+  "email": "lopezblanca@gmail.com",
+  "password": "$2a$08$Tq78AjJJBAY7Ns0cLZCeRe6Kwjo9ALM0FWkuhA9vNkjWtw5NfZ1jC",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d4804a12b09e83a559c306"
+  },
+  "name": "Maya Rivera",
+  "email": "may_riv@gmail.com",
+  "password": "$2a$08$88KKHEgySC7v1ijey90vJOxgqGHVHu7cuS8YKSBJqYahuRg6UwJ02",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d4d6aa3383e2083a826f80"
+  },
+  "name": "Jose García",
+  "email": "jose_gar@gmail.com",
+  "password": "$2a$08$L9PBCcjHOU63vQMNLeREr.6k2jaGzkTGRY2OIlP78d/ulwYggdKrK",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d53ed45930022ecbe73520"
+  },
+  "name": "Roberto Eduardo Juarez",
+  "email": "rob_jua@gmail.com",
+  "password": "$2a$08$1Q8nNiiiIBGEpyoz4suJJeX3mcU7.supt2H4qtE/ruOJlqPdtl1Iq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d54d729fb493c0ce486352"
+  },
+  "name": "Edith Reyes",
+  "email": "edithrey9738@gmail.com",
+  "password": "$2a$08$FJgbjaqAt98cbeG/F5QPPOA6Am5XN/N2D9T189LBBdE.SG8JhAxUO",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d555d889d683279df8d56a"
+  },
+  "name": "Olivia Rodriguez",
+  "email": "olivrod873@gmail.com",
+  "password": "$2a$08$PluPt6sIdZJDH/nADdNWSuk/LAYAGWvwwmQvlbHmhXozw8//aXYv2",
+  "__v": 0
+}]

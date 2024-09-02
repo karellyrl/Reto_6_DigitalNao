@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "66d481b512b09e83a559c310"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a416"
+  },
+  "author": {
+    "$oid": "66d460d565879619e1ecf803"
+  },
+  "rating": 5,
+  "date": {
+    "$date": "2024-09-01T15:01:09.355Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d54e0b9fb493c0ce486356"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a40d"
+  },
+  "author": {
+    "$oid": "66d54d729fb493c0ce486352"
+  },
+  "rating": 5,
+  "date": {
+    "$date": "2024-09-02T05:32:59.792Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d5567089d683279df8d56e"
+  },
+  "restaurant": {
+    "$oid": "66c401e3f05ea7a6bc34a416"
+  },
+  "author": {
+    "$oid": "66d555d889d683279df8d56a"
+  },
+  "rating": 3,
+  "date": {
+    "$date": "2024-09-02T06:08:48.243Z"
+  },
+  "__v": 0
+}]
